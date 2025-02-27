@@ -2,37 +2,39 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Link from "next/link";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { signup } from "@/app/actions/auth";
 
-export default function Home() {
+export default function Signup() {
 	const [showPW, setShowPW] = React.useState(false);
 
 	const [user, setUser] = useState("");
 	const [pass, setPass] = useState("");
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+		if (!user) {
+		}
+
 		console.log("User = ", user);
 		console.log("Pass = ", pass);
 	};
 
 	return (
 		<div>
-			<div className="flex flex-col items-center mt-60">
+			<div className="flex flex-col items-center mt-16">
 				<Image
 					src="/altr-logo.svg"
-					width={200}
+					width={100}
 					height={0}
 					alt="ALTR - AI Language Tutor Logo"
 				/>
-				<h1 className="text-gray-700">Your Personal Language Tutor</h1>
 			</div>
 			<div>
-				<form className="flex flex-col w-full gap-2 mt-10">
+				<form
+					action={signup}
+					className="flex flex-col w-full gap-2 mt-52"
+				>
+					<h1 className="flex justify-center text-gray-600 text-xl py-2 tracking-widest">SIGN UP</h1>
 					<input
 						type="text"
 						name="user"
@@ -71,16 +73,6 @@ export default function Home() {
 						REGISTER
 					</button>
 				</form>
-			</div>
-
-			<div className="flex flex-col items-center mt-20 w-full">
-				<p className="pb-2 text-gray-700">New here?</p>
-				<Link
-					href="/signup"
-					className="w-full"
-				>
-					<button className="p-3 rounded-md border border-blue-500 text-blue-500 text-sm text-gray-700 w-full hover:bg-blue-300">SIGN UP</button>
-				</Link>
 			</div>
 		</div>
 	);
