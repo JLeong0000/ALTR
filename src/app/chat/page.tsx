@@ -4,18 +4,20 @@ import Image from "next/image";
 export default function Chat() {
 	return (
 		<div className="h-screen flex flex-col -mx-8">
-			<div className="bg-gradient-to-b from-gray-400 to-gray-200 py-2">
+			<div className="bg-gradient-to-b from-gray-500 to-gray-300 py-2 flex justify-between items-center">
 				<Image
 					src="/altr-logo.svg"
 					width={80}
 					height={0}
 					alt="ALTR - AI Language Tutor Logo"
-					className="mx-3"
+					className="ms-3"
 				/>
+				<button className="bg-red-200 text-sm h-9 px-7 me-3 rounded-md tracking-wider drop-shadow hover:bg-red-300 focus:bg-red-400 focus:ring-2 focus:ring-red-800">LOGOUT</button>
 			</div>
 
 			<main className="flex flex-col h-[calc(100vh-60px)] p-4 pt-0 relative">
-				<div className="flex gap-4 mx-4 flex-grow overflow-y-auto mb-24 pb-4 flex-col-reverse">
+				<div className="flex gap-4 flex-grow overflow-y-auto mb-24 pb-4 px-3 flex-col-reverse">
+					<ChatBubble text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, quos. Hic, neque vel. Quas incidunt ex, veritatis delectus modi, magnam soluta" />
 					<ChatBubble text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, quos. Hic, neque vel. Quas incidunt ex, veritatis delectus modi, magnam soluta" />
 					<ChatBubble text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, quos. Hic, neque vel." />
 					<ChatBubble

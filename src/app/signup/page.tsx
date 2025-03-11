@@ -1,50 +1,47 @@
 "use client";
 
+import { register } from "@/utils/actions";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { signup } from "@/app/actions/auth";
+import { MdArrowBack } from "react-icons/md";
 
 export default function Signup() {
 	const [showPW, setShowPW] = React.useState(false);
 
-	const [user, setUser] = useState("");
-	const [pass, setPass] = useState("");
-
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		if (!user) {
-		}
-
-		console.log("User = ", user);
-		console.log("Pass = ", pass);
-	};
-
 	return (
 		<div>
+			<div className="mt-24 bg-gray-200 w-fit p-3 rounded-xl">
+				<Link href={"/"}>
+					<MdArrowBack size={25} />
+				</Link>
+			</div>
 			<div className="flex flex-col items-center mt-16">
-				<Image
-					src="/altr-logo.svg"
-					width={100}
-					height={0}
-					alt="ALTR - AI Language Tutor Logo"
-				/>
+				<Link href={"/"}>
+					<Image
+						src="/altr-logo.svg"
+						width={200}
+						height={0}
+						alt="ALTR - AI Language Tutor Logo"
+					/>
+				</Link>
+				<h1 className="text-gray-700">Your Personal Language Tutor</h1>
 			</div>
 			<div>
 				<form
-					action={signup}
-					className="flex flex-col w-full gap-2 mt-52"
+					action={register}
+					className="flex flex-col w-full gap-2 mt-24"
 				>
 					<h1 className="flex justify-center text-gray-600 text-xl py-2 tracking-widest">SIGN UP</h1>
 					<input
 						type="text"
-						name="user"
+						name="username"
 						placeholder="Username *"
 						className="p-3 pr-10 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-						value={user}
 						required
 						autoFocus
 						autoComplete="off"
-						onChange={e => setUser(e.target.value)}
 					/>
 					<div className="relative w-full">
 						<input
@@ -52,10 +49,8 @@ export default function Signup() {
 							name="password"
 							placeholder="Password *"
 							className="p-3 pr-10 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-							value={pass}
 							required
 							autoComplete="off"
-							onChange={e => setPass(e.target.value)}
 						/>
 						<button
 							type="button"
