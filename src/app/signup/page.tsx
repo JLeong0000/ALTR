@@ -1,14 +1,14 @@
 "use client";
 
+import CredForm from "@/components/credForm";
 import { register } from "@/utils/actions";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { LuEye, LuEyeOff } from "react-icons/lu";
 import { MdArrowBack } from "react-icons/md";
 
 export default function Signup() {
-	const [showPW, setShowPW] = React.useState(false);
+	const [error, setError] = useState("");
 
 	return (
 		<div>
@@ -30,43 +30,22 @@ export default function Signup() {
 			</div>
 			<div>
 				<form
-					action={register}
-					className="flex flex-col w-full gap-2 mt-24"
+					action={async formData => {
+						const res = await register(formData);
+						if (res?.error) {
+							setError(res.error);
+						}
+					}}
+					className="relative flex flex-col w-full gap-2 mt-24"
 				>
 					<h1 className="flex justify-center text-gray-600 text-xl py-2 tracking-widest">SIGN UP</h1>
-					<input
-						type="text"
-						name="username"
-						placeholder="Username *"
-						className="p-3 pr-10 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-						required
-						autoFocus
-						autoComplete="off"
-					/>
-					<div className="relative w-full">
-						<input
-							type={showPW ? "text" : "password"}
-							name="password"
-							placeholder="Password *"
-							className="p-3 pr-10 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-							required
-							autoComplete="off"
-						/>
-						<button
-							type="button"
-							onClick={() => setShowPW(!showPW)}
-							className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-						>
-							{showPW ? <LuEyeOff /> : <LuEye />}
-						</button>
-					</div>
+					<CredForm buttonText="register" />
 
-					<button
-						type="submit"
-						className="p-3 rounded-md bg-blue-500 text-white tracking-wider"
-					>
-						REGISTER
-					</button>
+					{error && (
+						<div className="absolute -bottom-1/4 left-1/2 -translate-x-1/2 mt-3">
+							<p className="bg-red-200 text-red-800 p-2 rounded-md text-sm">{error}</p>
+						</div>
+					)}
 				</form>
 			</div>
 		</div>

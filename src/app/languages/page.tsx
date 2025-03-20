@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export default async function Languages() {
 	const session = await auth();
+	console.log(session);
 
 	return (
 		<div>
@@ -19,7 +20,7 @@ export default async function Languages() {
 								className="rounded-full"
 							/>
 						)}{" "}
-						<span className="ps-3 uppercase font-semibold break-words text-sm">{session.user.name}</span>
+						<span className="ps-3 font-semibold break-words text-sm">Welcome, {session.user.name}</span>
 					</div>
 				)}
 				<form
