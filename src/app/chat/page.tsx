@@ -2,6 +2,10 @@ import ChatBubble from "@/components/chatBubble";
 import Image from "next/image";
 
 export default function Chat() {
+	// input append to array from user
+	// append AI response to array
+	// display array
+
 	return (
 		<div className="h-screen flex flex-col -mx-8">
 			<div className="bg-gradient-to-b from-gray-500 to-gray-300 py-2 flex justify-between items-center">
@@ -33,7 +37,7 @@ export default function Chat() {
 
 				<div className="absolute bottom-4 left-0 w-full py-4 flex justify-center">
 					<textarea
-						className="w-[90%] max-w-lg rounded-lg p-3 bg-gray-300 resize-none h-20 focus:outline-gray-500"
+						className="w-full mx-8 rounded-lg p-3 bg-gray-300 resize-none h-20 focus:outline-gray-500"
 						placeholder="Start chatting..."
 						rows={3}
 					/>

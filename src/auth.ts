@@ -1,11 +1,14 @@
-import NextAuth, { CredentialsSignin } from "next-auth";
+// auth.ts
+import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import connectDB from "./lib/db";
 import { User } from "./models/User";
 import { compare } from "bcryptjs";
+import GitHub from "next-auth/providers/github";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	providers: [
+		GitHub,
 		Credentials({
 			name: "Credentials",
 			credentials: {
@@ -15,26 +18,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			authorize: async credentials => {
 				const username = credentials.username as string | undefined;
 				const password = credentials.password as string | undefined;
+
 				if (!username || !password) {
-					console.error("Missing credentials");
 					return null;
 				}
+
 				await connectDB();
-				const user = await User.findOne({ username }).select("+password"); // Ensure password is included
+				const user = await User.findOne({ username }).select("+password");
+
 				if (!user || !user.password) {
-					console.error("Invalid login credentials");
 					return null;
 				}
+
 				const passwordMatch = await compare(password, user.password);
 				if (!passwordMatch) {
-					console.error("Invalid login credentials");
 					return null;
 				}
-				return { id: user._id, username: user.username };
+
+				// Return user with all the data you need in the session
+				return {
+					id: user._id.toString(),
+					username: user.username,
+				};
 			},
 		}),
 	],
-	pages: {
-		signIn: "/",
-	},
 });

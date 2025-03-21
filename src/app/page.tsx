@@ -1,13 +1,12 @@
 "use client";
-
 import { githubLogin, login } from "@/utils/actions";
 import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import CredForm from "@/components/credForm";
 
-export default function Home() {
+export default function Login() {
 	const [error, setError] = useState("");
 
 	return (
@@ -40,7 +39,7 @@ export default function Home() {
 				)}
 			</form>
 
-			{/* <div className="inline-flex items-center justify-center w-full my-1">
+			<div className="inline-flex items-center justify-center w-full my-1">
 				<hr className="w-64 h-px my-8 bg-gray-600 border-0" />
 				<span className="absolute px-3 font-medium text-gray-600 -translate-x-1/2 bg-[#f7f7f7] left-1/2">or</span>
 			</div>
@@ -48,7 +47,7 @@ export default function Home() {
 			<div className="flex flex-col w-full gap-2">
 				<button
 					onClick={() => githubLogin()}
-					className="flex justify-center items-center p-3 rounded-md bg-cyan-500 text-white tracking-wider"
+					className="flex justify-center items-center p-3 rounded-md bg-indigo-600 text-white tracking-wider"
 				>
 					<FaGithub
 						size={25}
@@ -56,7 +55,7 @@ export default function Home() {
 					/>
 					Sign in with Github
 				</button>
-			</div> */}
+			</div>
 
 			<div className="flex flex-col items-center mt-20 w-full">
 				<p className="pb-2 text-gray-700">New here?</p>

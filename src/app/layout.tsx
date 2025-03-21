@@ -1,3 +1,4 @@
+import StoreProvider from "./StoreProvider";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
@@ -18,11 +19,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html
-			lang="en"
-			className={openSans.className}
-		>
-			<body className="mx-8">{children}</body>
-		</html>
+		<StoreProvider>
+			<html
+				lang="en"
+				className={openSans.className}
+			>
+				<body className="mx-8">{children}</body>
+			</html>
+		</StoreProvider>
 	);
 }

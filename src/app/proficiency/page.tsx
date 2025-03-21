@@ -2,10 +2,10 @@ import { signOut, auth } from "../../auth";
 import ChatOptionButton from "@/components/chatOptionButton";
 import Image from "next/image";
 
-export default async function Languages() {
+export default async function Proficiency() {
 	const session = await auth();
 
-	const languages = ["Japanese", "Chinese", "French"];
+	const proficiencies = ["Beginner", "Intermediate", "Fluent"];
 
 	return (
 		<div>
@@ -44,14 +44,14 @@ export default async function Languages() {
 			</div>
 
 			<div className="flex flex-col mt-28">
-				<h1 className="text-center text-2xl font-bold text-cyan-700">LANGUAGES</h1>
-				<p className="text-center pt-2">Choose a language to practice</p>
+				<h1 className="text-center text-2xl font-bold text-cyan-700">PROFICIENCY</h1>
+				<p className="text-center pt-2">Choose your level</p>
 				<div className="flex flex-col mt-14 gap-6 justify-center">
-					{languages.map((lang, index) => (
+					{proficiencies.map((level, index) => (
 						<ChatOptionButton
 							key={index}
-							text={lang}
-							language
+							text={level}
+							proficiency
 						/>
 					))}
 				</div>
